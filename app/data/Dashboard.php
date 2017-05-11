@@ -20,10 +20,10 @@ class Dashboard {
         $stats = DB::select('SELECT count(*) as qtd FROM `fornecedor` WHERE ativo = 1');
         $data['fornecedores'] = $stats[0]->qtd;
 
-        $stats = DB::select('SELECT sum(valor_nota) as qtd FROM `nota_entrada` WHERE ativo = 1 and `data_add` BETWEEN :date1 AND :date2', $d);
+        $stats = DB::select('SELECT sum(valor_nota) as qtd FROM `nota_entrada` WHERE ativo = 1 and `data_compra` BETWEEN :date1 AND :date2', $d);
         $data['nf_entrada_valor'] = $stats[0]->qtd;
 
-        $stats = DB::select('SELECT count(*) as qtd FROM `nota_entrada` WHERE ativo = 1 and `data_add` BETWEEN :date1 AND :date2', $d);
+        $stats = DB::select('SELECT count(*) as qtd FROM `nota_entrada` WHERE ativo = 1 and `data_compra` BETWEEN :date1 AND :date2', $d);
         $data['nf_entrada'] = $stats[0]->qtd;
 
         return $data;

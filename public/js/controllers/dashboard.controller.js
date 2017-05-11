@@ -54,7 +54,8 @@
                 if(response.error === false) {
                     $scope.produtos = response.estatisticas.produtos;
                     $scope.fornecedores = response.estatisticas.fornecedores;
-                    $scope.nf_entrada_valor = parseFloat(response.estatisticas.nf_entrada_valor).toLocaleString('pt-BR');
+                    var nf_valor = !response.estatisticas.nf_entrada_valor ? 0 : response.estatisticas.nf_entrada_valor;
+                    $scope.nf_entrada_valor = parseFloat(nf_valor).toLocaleString('pt-BR');
                     $scope.nf_entrada = response.estatisticas.nf_entrada;
                     $scope.notas = response.notas;
 
