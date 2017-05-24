@@ -10,7 +10,7 @@ class NotaEntrada {
         return DB::select("SELECT *, DATE_FORMAT(ne.data_add, '%d/%m/%Y %H:%i') as data_add, DATE_FORMAT(data_compra, '%d/%m/%Y') as data_compra, DATE_FORMAT(data_pagamento, '%d/%m/%Y') as data_pagamento
         FROM nota_entrada AS ne INNER JOIN product AS p ON ne.produto_id = p.product_id
         INNER JOIN fornecedor AS f ON ne.fornecedor_id = f.fornecedor_id
-        WHERE ne.`ativo` = :ativo ORDER BY ne.`nota_entrada_id` DESC", ['ativo' => 1]);
+        WHERE ne.`ativo` = :ativo ORDER BY ne.`data_compra` DESC", ['ativo' => 1]);
     }
 
     public function addNotaEntrada($request) {

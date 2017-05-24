@@ -31,6 +31,17 @@
         });
 
         $scope.clickNotaEntrada = function(type)  {
+            var checkData = $scope.nota.data_pagamento instanceof Date;
+            if(!checkData) {
+                var nota = $scope.nota.data_pagamento.split("/");
+                $scope.nota.data_pagamento = new Date(nota[2]+'-'+nota[1]+'-'+nota[0]);
+
+            }
+            var checkData = $scope.nota.data_compra instanceof Date;
+            if(!checkData) {
+                var nota = $scope.nota.data_compra.split("/");
+                $scope.nota.data_compra = new Date(nota[2]+'-'+nota[1]+'-'+nota[0]);
+            }
             if(type == 'Salvar') {
                 DataService.addNotaEntrada($scope.nota).then(function(response) {
                     $scope.notas_entrada = response;
@@ -105,7 +116,9 @@
 
         setTimeout(function(){
             jQuery(document).ready(function(){
-                $('table.display').DataTable();
+                $('table.display').DataTable( {
+                    "aaSorting": []
+                } );
             });
         }, 500);
     }
